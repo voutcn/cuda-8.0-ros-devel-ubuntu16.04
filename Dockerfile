@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-devel-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04
 
 # Set default shell to bash
 SHELL ["/bin/bash", "-c"]
@@ -42,6 +42,21 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main"
     source /root/.bashrc && \
     apt-get install -y -qq python-rosinstall > /dev/null && \
     apt-get install -y -qq pulseaudio socat alsa-utils ffmpeg gstreamer1.0* > /dev/null && \
+    apt-get install -y -qq ros-kinetic-gazebo-ros-control; \
+    apt-get install -y -qq ros-kinetic-controller-manager; \
+    apt-get install -y -qq ros-kinetic-position-controllers; \
+    apt-get install -y -qq ros-kinetic-transmission-interface; \
+    apt-get install -y -qq v4l-utils; \
+    apt-get install -y -qq ros-kinetic-velocity-controllers; \
+    apt-get install -y -qq ros-kinetic-can-msgs; \
+    apt-get install -y -qq ros-kinetic-control-toolbox ; \
+    apt-get install -y -qq ros-kinetic-controller-interface; \
+    apt-get install -y -qq ros-kinetic-controller-manager ; \
+    apt-get install -y -qq ros-kinetic-controller-manager-msgs; \
+    apt-get install -y -qq ros-kinetic-hardware-interface ; \
+    apt-get install -y -qq ros-kinetic-joint-limits-interface; \
+    apt-get install -y -qq ros-kinetic-realtime-tools ; \
+    apt-get install -y -qq ros-kinetic-transmission-interface; \
     rm -rf /var/lib/apt/lists/*
 
 RUN rosdep fix-permissions
