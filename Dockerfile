@@ -57,7 +57,43 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main"
     apt-get install -y -qq ros-kinetic-joint-limits-interface; \
     apt-get install -y -qq ros-kinetic-realtime-tools ; \
     apt-get install -y -qq ros-kinetic-transmission-interface; \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y -qq ros-kinetic-laser-proc ros-kinetic-urg-c; \
+    apt-get install -y -qq bluez; \
+    apt-get install -y -qq evemu-tools; \
+    apt-get install -y -qq evtest; \
+    apt-get install -y -qq inputattach; \
+    apt-get install -y -qq joystick; \
+    apt-get install -y -qq libbluetooth3; \
+    apt-get install -y -qq libcwiid1; \
+    apt-get install -y -qq libevemu3; \
+    apt-get install -y -qq libspnav-dev; \
+    apt-get install -y -qq libusb-dev; \
+    apt-get install -y -qq python-bluez; \
+    apt-get install -y -qq python-cwiid; \
+    apt-get install -y -qq ros-kinetic-combined-robot-hw; \
+    apt-get install -y -qq ros-kinetic-combined-robot-hw-tests; \
+    apt-get install -y -qq ros-kinetic-controller-manager-tests; \
+    apt-get install -y -qq ros-kinetic-diff-drive-controller; \
+    apt-get install -y -qq ros-kinetic-effort-controllers; \
+    apt-get install -y -qq ros-kinetic-force-torque-sensor-controller; \
+    apt-get install -y -qq ros-kinetic-gripper-action-controller; \
+    apt-get install -y -qq ros-kinetic-imu-sensor-controller; \
+    apt-get install -y -qq ros-kinetic-joint-state-controller; \
+    apt-get install -y -qq ros-kinetic-joint-trajectory-controller; \
+    apt-get install -y -qq ros-kinetic-ps3joy; \
+    apt-get install -y -qq ros-kinetic-rqt-joint-trajectory-controller; \
+    apt-get install -y -qq ros-kinetic-spacenav-node; \
+    apt-get install -y -qq ros-kinetic-wiimote; \
+    apt-get install -y -qq spacenavd; \
+    apt-get install -y -qq ros-kinetic-grid-map-core; \
+    apt-get install -y -qq ros-kinetic-grid-map-cv; \
+    apt-get install -y -qq ros-kinetic-grid-map-msgs; \
+    apt-get install -y -qq ros-kinetic-grid-map-ros; \
+    apt-get install -y -qq curl;
+
+RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+RUN apt-get install -y nodejs
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN rosdep fix-permissions
 
