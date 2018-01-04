@@ -23,14 +23,12 @@ RUN wget -q https://bootstrap.pypa.io/get-pip.py && \
     export PATH=/usr/local/bin:$PATH && \
     rm get-pip.py
 
-RUN pip install -q -U bitarray pyzmq ujson requests pymysql numpy pandas scipy scikit-learn gTTs awscli numba chardet > /dev/null
+RUN pip install -q -U bitarray pyzmq ujson requests gunicorn pymysql numpy pandas scipy scikit-learn gTTs awscli numba chardet > /dev/null
 
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
     apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116 && \
-    apt-get update -qq \
-    apt-get install -y -qq ros-kinetic-desktop-full \
-    apt-get install -y -qq ros-kinetic-nmea-msgs ros-kinetic-nmea-navsat-driver ros-kinetic-jsk-visualization ros-kinetic-slam-gmapping ros-kinetic-geodesy \
-    apt-get install -y -qq ros-kinetic-audio-capture \
+    apt-get update -qq && \
+    apt-get install -y -qq ros-kinetic-desktop-full && \
     rosdep init && \
     rosdep update && \
     echo "source /opt/ros/kinetic/setup.bash" >> /root/.bashrc && \
@@ -106,7 +104,12 @@ RUN apt-get install -y -qq \
     libopencv-dev \
     ros-kinetic-sound-play \
     ros-kinetic-jsk-recognition-msgs \
-    ros-kinetic-grid-map-ros
+    ros-kinetic-grid-map-ros \
+    ros-kinetic-nmea-msgs \
+    ros-kinetic-nmea-navsat-driver \
+    ros-kinetic-jsk-visualization \
+    ros-kinetic-slam-gmapping ros-kinetic-geodesy \
+    ros-kinetic-audio-capture
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN apt-get install -y nodejs
