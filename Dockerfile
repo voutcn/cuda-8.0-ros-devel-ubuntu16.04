@@ -14,7 +14,7 @@ RUN mv /root/.bashrc /root/bashrc.bak && \
     touch /root/.bashrc
 
 RUN apt-get update -qq > /dev/null && apt-get install -y -qq sudo wget lsb-release iputils-ping > /dev/null && \
-    apt-get install -y -qq build-essential libopencv-dev python-opencv vim htop sshfs nfs-common python-dev git python-pip python-all-dev libatlas-base-dev gfortran > /dev/null && \
+    apt-get install -y -qq build-essential libopencv-dev python-opencv libeigen3-dev vim htop sshfs nfs-common python-dev git python-pip python-all-dev libatlas-base-dev gfortran > /dev/null && \
     apt-get install -y -qq libopenblas-dev mpg123 > /dev/null && \
     rm -rf /var/lib/apt/lists/*
 
@@ -22,6 +22,8 @@ RUN wget -q https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     export PATH=/usr/local/bin:$PATH && \
     rm get-pip.py
+    
+RUN git clone git@github.com:voutcn/g2o.git && cd g2o && sh init.sh
 
 RUN pip install -q -U bitarray pyzmq ujson requests gunicorn pymysql numpy pandas scipy scikit-learn gTTs awscli numba chardet > /dev/null
 
