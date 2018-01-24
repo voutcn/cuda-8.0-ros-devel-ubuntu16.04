@@ -23,7 +23,7 @@ RUN wget -q https://bootstrap.pypa.io/get-pip.py && \
     export PATH=/usr/local/bin:$PATH && \
     rm get-pip.py
     
-RUN git clone git@github.com:voutcn/g2o.git && cd g2o && sh init.sh
+RUN git clone https://github.com/voutcn/g2o.git && cd g2o && sh init.sh
 
 RUN pip install -q -U bitarray pyzmq ujson requests gunicorn pymysql numpy pandas scipy scikit-learn gTTs awscli numba chardet > /dev/null
 
